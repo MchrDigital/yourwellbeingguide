@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KŌHAKU — Handcrafted Ceramics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300&family=Inter+Tight:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --white: #fdfdfc;
+    --off-white: #f6f4f0;
+    --cream: #efece5;
+    --ink: #1a1a1a;
+    --muted: #8a8680;
+    --line: #e8e5df;
+    --accent: #b8452c;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--white);
+    color: var(--ink);
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 300;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  .serif {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+  }
+
+  /* NAVIGATION */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 28px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(253, 253, 252, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 100;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .logo {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .nav-links a {
+    color: var(--ink);
+    text-decoration: none;
+    transition: opacity 0.3s;
+  }
+
+  .nav-links a:hover { opacity: 0.5; }
+
+  .nav-right {
+    display: flex;
+    gap: 24px;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    align-items: center;
+  }
+
+  .nav-right a {
+    color: var(--ink);
+    text-decoration: none;
+    transition: opacity 0.3s;
+  }
+
+  .nav-right a:hover { opacity: 0.5; }
+
+  .cart-icon {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+  }
+
+  .cart-count {
+    width: 18px;
+    height: 18px;
+    background: var(--ink);
+    color: var(--white);
+    border-radius: 50%;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fraunces', serif;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    padding: 140px 48px 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    position: relative;
+  }
+
+  .hero-text .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .eyebrow::before {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--muted);
+  }
+
+  .hero-text h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(56px, 8vw, 112px);
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    margin-bottom: 32px;
+  }
+
+  .hero-text h1 em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--accent);
+  }
+
+  .hero-text p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--muted);
+    max-width: 440px;
+    margin-bottom: 48px;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 48px;
+    padding-top: 32px;
+    border-top: 1px solid var(--line);
+    max-width: 440px;
+  }
+
+  .hero-meta div span {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  .hero-meta div strong {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    font-weight: 400;
+  }
+
+  /* HERO IMAGE */
+  .hero-visual {
+    position: relative;
+    aspect-ratio: 4/5;
+    background: var(--off-white);
+    overflow: hidden;
+  }
+
+  .hero-visual::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 30%, var(--cream), transparent 70%);
+  }
+
+  .vessel {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+  }
+
+  .price-tag {
+    position: absolute;
+    top: 32px;
+    right: 32px;
+    font-family: 'Fraunces', serif;
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    background: var(--white);
+    padding: 12px 20px;
+    border-radius: 100px;
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+  }
+
+  .price-tag strong {
+    font-size: 20px;
+    font-weight: 400;
+  }
+
+  .corner-label {
+    position: absolute;
+    bottom: 32px;
+    left: 32px;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+  }
+
+  /* MARQUEE */
+  .marquee {
+    padding: 32px 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    overflow: hidden;
+    white-space: nowrap;
+    background: var(--white);
+  }
+
+  .marquee-track {
+    display: inline-flex;
+    animation: scroll 40s linear infinite;
+    gap: 64px;
+    align-items: center;
+  }
+
+  .marquee span {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 24px;
+    font-weight: 300;
+    color: var(--ink);
+  }
+
+  .marquee-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* PRODUCT DETAILS */
+  .details {
+    padding: 140px 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 120px;
+    align-items: start;
+  }
+
+  .details-visual {
+    position: sticky;
+    top: 120px;
+    aspect-ratio: 1;
+    background: var(--off-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .details-visual svg { width: 55%; }
+
+  .details-content .section-label {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+
+  .details-content h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 56px;
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 40px;
+  }
+
+  .details-content h2 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .details-content > p {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--muted);
+    margin-bottom: 48px;
+  }
+
+  .spec-list {
+    list-style: none;
+    border-top: 1px solid var(--line);
+  }
+
+  .spec-list li {
+    padding: 24px 0;
+    border-bottom: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 32px;
+  }
+
+  .spec-list li span:first-child {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding-top: 4px;
+  }
+
+  .spec-list li span:last-child {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 400;
+  }
+
+  .cta-group {
+    margin-top: 56px;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .btn-primary {
+    background: var(--ink);
+    color: var(--white);
+    padding: 20px 40px;
+    border: none;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.3s;
+  }
+
+  .btn-primary:hover { background: var(--accent); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--ink);
+    padding: 20px 32px;
+    border: 1px solid var(--line);
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-family: inherit;
+    transition: border-color 0.3s;
+  }
+
+  .btn-secondary:hover { border-color: var(--ink); }
+
+  /* COLLECTION GRID */
+  .collection {
+    padding: 120px 48px;
+    background: var(--off-white);
+  }
+
+  .collection-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 80px;
+  }
+
+  .collection-header h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 48px;
+    font-weight: 300;
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+
+  .collection-header h3 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .collection-header p {
+    font-size: 14px;
+    color: var(--muted);
+    max-width: 320px;
+  }
+
+  .collection-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+  }
+
+  .product-card {
+    cursor: pointer;
+  }
+
+  .product-card-image {
+    aspect-ratio: 4/5;
+    background: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.5s;
+  }
+
+  .product-card:hover .product-card-image {
+    transform: translateY(-4px);
+  }
+
+  .product-card-image svg {
+    width: 50%;
+    transition: transform 0.5s;
+  }
+
+  .product-card:hover .product-card-image svg {
+    transform: scale(1.05);
+  }
+
+  .card-num {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    font-family: 'Fraunces', serif;
+  }
+
+  .product-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-top: 12px;
+  }
+
+  .product-info h4 {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+
+  .product-info h4 em {
+    font-style: italic;
+    font-size: 14px;
+    color: var(--muted);
+    margin-left: 8px;
+  }
+
+  .product-info .price {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+  }
+
+  /* PHILOSOPHY */
+  .philosophy {
+    padding: 140px 48px;
+    text-align: center;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .philosophy .section-label {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 40px;
+  }
+
+  .philosophy blockquote {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 300;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  .philosophy blockquote em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .philosophy cite {
+    display: block;
+    margin-top: 48px;
+    font-style: normal;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 80px 48px 40px;
+    border-top: 1px solid var(--line);
+    background: var(--white);
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 64px;
+    margin-bottom: 80px;
+  }
+
+  .footer-brand .logo {
+    display: block;
+    margin-bottom: 24px;
+  }
+
+  .footer-brand p {
+    font-size: 14px;
+    color: var(--muted);
+    max-width: 320px;
+    line-height: 1.6;
+  }
+
+  .footer-col h5 {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    font-weight: 400;
+  }
+
+  .footer-col ul {
+    list-style: none;
+  }
+
+  .footer-col li {
+    margin-bottom: 10px;
+  }
+
+  .footer-col a {
+    font-size: 14px;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .footer-col a:hover { color: var(--ink); }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 32px;
+    border-top: 1px solid var(--line);
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  /* FADE IN ANIMATION */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-text > * {
+    opacity: 0;
+    animation: fadeUp 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  }
+
+  .hero-text > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero-text > *:nth-child(2) { animation-delay: 0.25s; }
+  .hero-text > *:nth-child(3) { animation-delay: 0.4s; }
+  .hero-text > *:nth-child(4) { animation-delay: 0.55s; }
+
+  .hero-visual {
+    opacity: 0;
+    animation: fadeUp 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s forwards;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 20px 24px; }
+    .nav-links { display: none; }
+    .hero {
+      grid-template-columns: 1fr;
+      padding: 110px 24px 60px;
+      gap: 48px;
+    }
+    .details {
+      grid-template-columns: 1fr;
+      padding: 80px 24px;
+      gap: 48px;
+    }
+    .details-visual { position: static; }
+    .collection { padding: 80px 24px; }
+    .collection-grid { grid-template-columns: 1fr; gap: 32px; }
+    .collection-header {
+      flex-direction: column;
+      gap: 24px;
+      align-items: start;
+    }
+    .philosophy { padding: 80px 24px; }
+    .footer-top {
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+    footer { padding: 60px 24px 32px; }
+    .footer-bottom { flex-direction: column; gap: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#top" class="logo">KŌHAKU</a>
+  <ul class="nav-links">
+    <li><a href="#collection">Collection</a></li>
+    <li><a href="#atelier">Atelier</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#footer">Journal</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="#collection" class="nav-link-inline">Search</a>
+    <a href="#footer" class="cart-icon">
+      <span>Bag</span>
+      <div class="cart-count">1</div>
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-text">
+    <div class="eyebrow">Edition Nº 04 · Winter</div>
+    <h1>Silence <em>shaped</em> in clay.</h1>
+    <p>The Kōhaku bowl is born from a single gesture. Thrown in unglazed porcelain and signed piece by piece by artisans in Mashiko, Japan. Each curve carries the memory of the hands that shaped it.</p>
+    <div class="hero-meta">
+      <div>
+        <span>Origin</span>
+        <strong>Mashiko, JP</strong>
+      </div>
+      <div>
+        <span>Edition</span>
+        <strong>48 pieces</strong>
+      </div>
+      <div>
+        <span>Year</span>
+        <strong>2026</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <span class="corner-label">One of a kind · Handmade</span>
+    <div class="price-tag">
+      <span>$</span><strong>240</strong>
+    </div>
+    <svg class="vessel" viewBox="0 0 300 380" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="bowlGrad" cx="40%" cy="35%" r="70%">
+          <stop offset="0%" stop-color="#fdfdfc"/>
+          <stop offset="60%" stop-color="#efece5"/>
+          <stop offset="100%" stop-color="#c9c3b8"/>
+        </radialGradient>
+        <linearGradient id="shadow" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#1a1a1a" stop-opacity="0"/>
+          <stop offset="100%" stop-color="#1a1a1a" stop-opacity="0.15"/>
+        </linearGradient>
+      </defs>
+      <!-- shadow -->
+      <ellipse cx="150" cy="345" rx="110" ry="12" fill="#1a1a1a" opacity="0.08"/>
+      <!-- main vessel body -->
+      <path d="M 60 140 Q 55 200, 75 280 Q 90 330, 150 340 Q 210 330, 225 280 Q 245 200, 240 140 Q 240 130, 230 128 L 70 128 Q 60 130, 60 140 Z"
+            fill="url(#bowlGrad)" stroke="#d4cfc5" stroke-width="0.5"/>
+      <!-- rim -->
+      <ellipse cx="150" cy="130" rx="90" ry="14" fill="#2b2520" opacity="0.85"/>
+      <ellipse cx="150" cy="128" rx="88" ry="12" fill="#1a1a1a"/>
+      <ellipse cx="150" cy="127" rx="82" ry="9" fill="#0a0a0a"/>
+      <!-- subtle texture lines -->
+      <path d="M 70 180 Q 150 186, 230 180" stroke="#c9c3b8" stroke-width="0.5" fill="none" opacity="0.6"/>
+      <path d="M 68 230 Q 150 236, 232 230" stroke="#c9c3b8" stroke-width="0.5" fill="none" opacity="0.4"/>
+      <!-- accent detail -->
+      <circle cx="95" cy="250" r="1.5" fill="#b8452c" opacity="0.6"/>
+    </svg>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span>Handmade</span>
+    <div class="marquee-dot"></div>
+    <span>Mashiko porcelain</span>
+    <div class="marquee-dot"></div>
+    <span>Limited edition</span>
+    <div class="marquee-dot"></div>
+    <span>Ships in 7 days</span>
+    <div class="marquee-dot"></div>
+    <span>Handmade</span>
+    <div class="marquee-dot"></div>
+    <span>Mashiko porcelain</span>
+    <div class="marquee-dot"></div>
+    <span>Limited edition</span>
+    <div class="marquee-dot"></div>
+    <span>Ships in 7 days</span>
+    <div class="marquee-dot"></div>
+  </div>
+</div>
+
+<!-- PRODUCT DETAILS -->
+<section class="details" id="process">
+  <div class="details-visual">
+    <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="topView" cx="45%" cy="45%" r="55%">
+          <stop offset="0%" stop-color="#0a0a0a"/>
+          <stop offset="70%" stop-color="#1a1a1a"/>
+          <stop offset="100%" stop-color="#3a3530"/>
+        </radialGradient>
+        <radialGradient id="outerRing" cx="50%" cy="50%" r="50%">
+          <stop offset="85%" stop-color="#efece5"/>
+          <stop offset="100%" stop-color="#c9c3b8"/>
+        </radialGradient>
+      </defs>
+      <circle cx="150" cy="150" r="130" fill="url(#outerRing)"/>
+      <circle cx="150" cy="150" r="125" fill="#fdfdfc" opacity="0.4"/>
+      <circle cx="150" cy="150" r="105" fill="url(#topView)"/>
+      <circle cx="150" cy="150" r="100" fill="#0a0a0a"/>
+      <circle cx="120" cy="120" r="15" fill="#2b2520" opacity="0.6"/>
+      <circle cx="120" cy="120" r="8" fill="#4a4540" opacity="0.4"/>
+    </svg>
+  </div>
+
+  <div class="details-content">
+    <div class="section-label">About the piece</div>
+    <h2>An object that <em>asks for presence.</em></h2>
+    <p>The Kōhaku is thrown at high temperature and finished with a dark inner glaze that absorbs the light, creating a quiet contrast with its raw outer surface. Each piece takes three days to complete and is imperfect by nature — as it should be.</p>
+
+    <ul class="spec-list">
+      <li>
+        <span>Material</span>
+        <span>Raw porcelain · Tenmoku glaze</span>
+      </li>
+      <li>
+        <span>Dimensions</span>
+        <span>Ø 14cm × 8cm</span>
+      </li>
+      <li>
+        <span>Weight</span>
+        <span>320g</span>
+      </li>
+      <li>
+        <span>Care</span>
+        <span>Hand wash only · Not microwave safe</span>
+      </li>
+      <li>
+        <span>Shipping</span>
+        <span>5–7 business days · Kiri wood box</span>
+      </li>
+    </ul>
+
+    <div class="cta-group">
+      <button class="btn-primary">Add to bag</button>
+      <button class="btn-secondary">Save</button>
+    </div>
+  </div>
+</section>
+
+<!-- COLLECTION -->
+<section class="collection" id="collection">
+  <div class="collection-header">
+    <h3>From the same <em>collection.</em></h3>
+    <p>Complementary pieces, made by the same atelier, in the same week.</p>
+  </div>
+
+  <div class="collection-grid">
+    <div class="product-card">
+      <div class="product-card-image">
+        <span class="card-num">01 / 03</span>
+        <svg viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="v1" cx="40%" cy="40%" r="70%">
+              <stop offset="0%" stop-color="#fdfdfc"/>
+              <stop offset="100%" stop-color="#d4cfc5"/>
+            </radialGradient>
+          </defs>
+          <ellipse cx="100" cy="220" rx="60" ry="5" fill="#1a1a1a" opacity="0.08"/>
+          <path d="M 55 90 Q 50 140, 60 190 Q 70 215, 100 218 Q 130 215, 140 190 Q 150 140, 145 90 Q 145 82, 138 80 L 62 80 Q 55 82, 55 90 Z"
+                fill="url(#v1)" stroke="#c9c3b8" stroke-width="0.5"/>
+          <ellipse cx="100" cy="82" rx="42" ry="6" fill="#1a1a1a"/>
+        </svg>
+      </div>
+      <div class="product-info">
+        <h4>Yuki <em>Cup</em></h4>
+        <span class="price">$ 90</span>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-card-image">
+        <span class="card-num">02 / 03</span>
+        <svg viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="v2" cx="40%" cy="40%" r="70%">
+              <stop offset="0%" stop-color="#fdfdfc"/>
+              <stop offset="100%" stop-color="#c9c3b8"/>
+            </radialGradient>
+          </defs>
+          <ellipse cx="100" cy="220" rx="70" ry="6" fill="#1a1a1a" opacity="0.08"/>
+          <path d="M 40 130 Q 35 180, 55 205 Q 80 220, 100 220 Q 120 220, 145 205 Q 165 180, 160 130 Q 160 120, 150 118 L 50 118 Q 40 120, 40 130 Z"
+                fill="url(#v2)" stroke="#c9c3b8" stroke-width="0.5"/>
+          <ellipse cx="100" cy="122" rx="58" ry="8" fill="#1a1a1a"/>
+        </svg>
+      </div>
+      <div class="product-info">
+        <h4>Sora <em>Bowl</em></h4>
+        <span class="price">$ 170</span>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-card-image">
+        <span class="card-num">03 / 03</span>
+        <svg viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="v3" cx="40%" cy="35%" r="75%">
+              <stop offset="0%" stop-color="#fdfdfc"/>
+              <stop offset="100%" stop-color="#bfb8ad"/>
+            </radialGradient>
+          </defs>
+          <ellipse cx="100" cy="220" rx="55" ry="5" fill="#1a1a1a" opacity="0.08"/>
+          <path d="M 75 45 Q 68 90, 60 150 Q 55 200, 80 215 Q 100 220, 120 215 Q 145 200, 140 150 Q 132 90, 125 45 Q 125 38, 118 37 L 82 37 Q 75 38, 75 45 Z"
+                fill="url(#v3)" stroke="#c9c3b8" stroke-width="0.5"/>
+          <ellipse cx="100" cy="40" rx="22" ry="4" fill="#1a1a1a"/>
+        </svg>
+      </div>
+      <div class="product-info">
+        <h4>Tsuki <em>Vase</em></h4>
+        <span class="price">$ 275</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy" id="atelier">
+  <div class="section-label">Philosophy</div>
+  <blockquote>
+    "Beauty lies in things<br>
+    <em>imperfect, impermanent</em><br>
+    and incomplete."
+  </blockquote>
+  <cite>— Wabi-Sabi, 15th century</cite>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="logo">KŌHAKU</div>
+      <p>A ceramic studio devoted to collaboration between artisans from Japan and Brazil. Handmade pieces, released in small editions.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Shop</h5>
+      <ul>
+        <li><a href="#top">New Collection</a></li>
+        <li><a href="#collection">Bowls</a></li>
+        <li><a href="#collection">Cups</a></li>
+        <li><a href="#collection">Vases</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Atelier</h5>
+      <ul>
+        <li><a href="#atelier">Our story</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#atelier">Sustainability</a></li>
+        <li><a href="mailto:hello@kohaku.studio">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Support</h5>
+      <ul>
+        <li><a href="#process">Shipping</a></li>
+        <li><a href="#process">Returns</a></li>
+        <li><a href="#process">FAQ</a></li>
+        <li><a href="mailto:hello@kohaku.studio?subject=Newsletter">Newsletter</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Kōhaku Studio · All rights reserved</span>
+    <span>Made with care in São Paulo &amp; Mashiko</span>
+  </div>
+</footer>
+
+</body>
+</html>
