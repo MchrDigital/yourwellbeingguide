@@ -213,7 +213,10 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 60%;
+    width: 75%;
+    max-width: 380px;
+    height: auto;
+    object-fit: contain;
   }
 
   .price-tag {
@@ -380,6 +383,10 @@
     text-transform: uppercase;
     cursor: pointer;
     font-family: inherit;
+    font-weight: 400;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
     transition: background 0.3s;
   }
 
@@ -458,12 +465,17 @@
     transform: translateY(-4px);
   }
 
-  .product-card-image svg {
-    width: 50%;
+  .product-card-image svg,
+  .product-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 20px;
     transition: transform 0.5s;
   }
 
-  .product-card:hover .product-card-image svg {
+  .product-card:hover .product-card-image svg,
+  .product-card:hover .product-card-image img {
     transform: scale(1.05);
   }
 
@@ -698,7 +710,7 @@
   <div class="hero-text">
     <div class="eyebrow">Edition Nº 04 · Winter</div>
     <h1>Silence <em>shaped</em> in clay.</h1>
-    <p>The Kōhaku bowl is born from a single gesture. Thrown in unglazed porcelain and signed piece by piece by artisans in Mashiko, Japan. Each curve carries the memory of the hands that shaped it.</p>
+    <p>The Kōhaku cup is born from a single gesture. Thrown in unglazed porcelain and signed piece by piece by artisans in Mashiko, Japan. Each curve carries the memory of the hands that shaped it.</p>
     <div class="hero-meta">
       <div>
         <span>Origin</span>
@@ -718,35 +730,9 @@
   <div class="hero-visual">
     <span class="corner-label">One of a kind · Handmade</span>
     <div class="price-tag">
-      <span>$</span><strong>240</strong>
+      <span>$</span><strong>27</strong>
     </div>
-    <svg class="vessel" viewBox="0 0 300 380" xmlns=":https://ibb.co/VpVWncPc">
-      <defs>
-        <radialGradient id="bowlGrad" cx="40%" cy="35%" r="70%">
-          <stop offset="0%" stop-color="#fdfdfc"/>
-          <stop offset="60%" stop-color="#efece5"/>
-          <stop offset="100%" stop-color="#c9c3b8"/>
-        </radialGradient>
-        <linearGradient id="shadow" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stop-color="#1a1a1a" stop-opacity="0"/>
-          <stop offset="100%" stop-color="#1a1a1a" stop-opacity="0.15"/>
-        </linearGradient>
-      </defs>
-      <!-- shadow -->
-      <ellipse cx="150" cy="345" rx="110" ry="12" fill="#1a1a1a" opacity="0.08"/>
-      <!-- main vessel body -->
-      <path d="M 60 140 Q 55 200, 75 280 Q 90 330, 150 340 Q 210 330, 225 280 Q 245 200, 240 140 Q 240 130, 230 128 L 70 128 Q 60 130, 60 140 Z"
-            fill="url(#bowlGrad)" stroke="#d4cfc5" stroke-width="0.5"/>
-      <!-- rim -->
-      <ellipse cx="150" cy="130" rx="90" ry="14" fill="#2b2520" opacity="0.85"/>
-      <ellipse cx="150" cy="128" rx="88" ry="12" fill="#1a1a1a"/>
-      <ellipse cx="150" cy="127" rx="82" ry="9" fill="#0a0a0a"/>
-      <!-- subtle texture lines -->
-      <path d="M 70 180 Q 150 186, 230 180" stroke="#c9c3b8" stroke-width="0.5" fill="none" opacity="0.6"/>
-      <path d="M 68 230 Q 150 236, 232 230" stroke="#c9c3b8" stroke-width="0.5" fill="none" opacity="0.4"/>
-      <!-- accent detail -->
-      <circle cx="95" cy="250" r="1.5" fill="#b8452c" opacity="0.6"/>
-    </svg>
+    <img class="vessel" src="https://i.ibb.co/n8rsdN5N/kohaku-xicara.png" alt="Kōhaku cup — handcrafted porcelain from Mashiko, Japan" loading="eager">
   </div>
 </section>
 
@@ -825,7 +811,7 @@
     </ul>
 
     <div class="cta-group">
-      <button class="btn-primary">Add to bag</button>
+      <a href="https://www.digistore24.com/product/578396" class="btn-primary">Add to bag</a>
       <button class="btn-secondary">Save</button>
     </div>
   </div>
@@ -842,43 +828,21 @@
     <div class="product-card">
       <div class="product-card-image">
         <span class="card-num">01 / 03</span>
-        <svg viewBox="0 0 200 240" xmlns="https://ibb.co/VpVWncPc">
-          <defs>
-            <radialGradient id="v1" cx="40%" cy="40%" r="70%">
-              <stop offset="0%" stop-color="#fdfdfc"/>
-              <stop offset="100%" stop-color="#d4cfc5"/>
-            </radialGradient>
-          </defs>
-          <ellipse cx="100" cy="220" rx="60" ry="5" fill="#1a1a1a" opacity="0.08"/>
-          <path d="M 55 90 Q 50 140, 60 190 Q 70 215, 100 218 Q 130 215, 140 190 Q 150 140, 145 90 Q 145 82, 138 80 L 62 80 Q 55 82, 55 90 Z"
-                fill="url(#v1)" stroke="#c9c3b8" stroke-width="0.5"/>
-          <ellipse cx="100" cy="82" rx="42" ry="6" fill="#1a1a1a"/>
-        </svg>
+        <img src="https://i.ibb.co/n8rsdN5N/kohaku-xicara.png" alt="Yuki cup — handcrafted porcelain" loading="lazy">
       </div>
       <div class="product-info">
         <h4>Yuki <em>Cup</em></h4>
-        <span class="price">$ 90</span>
+        <span class="price">$ 27</span>
       </div>
     </div>
 
     <div class="product-card">
       <div class="product-card-image">
         <span class="card-num">02 / 03</span>
-        <svg viewBox="0 0 200 240" xmlns="https://ibb.co/Pzz89dtF">
-          <defs>
-            <radialGradient id="v2" cx="40%" cy="40%" r="70%">
-              <stop offset="0%" stop-color="#fdfdfc"/>
-              <stop offset="100%" stop-color="#c9c3b8"/>
-            </radialGradient>
-          </defs>
-          <ellipse cx="100" cy="220" rx="70" ry="6" fill="#1a1a1a" opacity="0.08"/>
-          <path d="M 40 130 Q 35 180, 55 205 Q 80 220, 100 220 Q 120 220, 145 205 Q 165 180, 160 130 Q 160 120, 150 118 L 50 118 Q 40 120, 40 130 Z"
-                fill="url(#v2)" stroke="#c9c3b8" stroke-width="0.5"/>
-          <ellipse cx="100" cy="122" rx="58" ry="8" fill="#1a1a1a"/>
-        </svg>
+        <img src="https://i.ibb.co/n88SnFR6/kohaku-vaso.png" alt="Sora vase — handcrafted porcelain" loading="lazy">
       </div>
       <div class="product-info">
-        <h4>Sora <em>Bowl</em></h4>
+        <h4>Sora <em>Vase</em></h4>
         <span class="price">$ 170</span>
       </div>
     </div>
@@ -886,21 +850,10 @@
     <div class="product-card">
       <div class="product-card-image">
         <span class="card-num">03 / 03</span>
-        <svg viewBox="0 0 200 240" xmlns="https://ibb.co/7dc30J2q">
-          <defs>
-            <radialGradient id="v3" cx="40%" cy="35%" r="75%">
-              <stop offset="0%" stop-color="#fdfdfc"/>
-              <stop offset="100%" stop-color="#bfb8ad"/>
-            </radialGradient>
-          </defs>
-          <ellipse cx="100" cy="220" rx="55" ry="5" fill="#1a1a1a" opacity="0.08"/>
-          <path d="M 75 45 Q 68 90, 60 150 Q 55 200, 80 215 Q 100 220, 120 215 Q 145 200, 140 150 Q 132 90, 125 45 Q 125 38, 118 37 L 82 37 Q 75 38, 75 45 Z"
-                fill="url(#v3)" stroke="#c9c3b8" stroke-width="0.5"/>
-          <ellipse cx="100" cy="40" rx="22" ry="4" fill="#1a1a1a"/>
-        </svg>
+        <img src="https://i.ibb.co/sdSTXvyZ/kohaku-bowl.png" alt="Tsuki bowl — handcrafted porcelain" loading="lazy">
       </div>
       <div class="product-info">
-        <h4>Tsuki <em>Vase</em></h4>
+        <h4>Tsuki <em>Bowl</em></h4>
         <span class="price">$ 275</span>
       </div>
     </div>
@@ -940,21 +893,21 @@
         <li><a href="#atelier">Our story</a></li>
         <li><a href="#process">Process</a></li>
         <li><a href="#atelier">Sustainability</a></li>
-        <li><a href="https://yourwellbeingguide.site/contact/">Contact</a></li>
+        <li><a href="https://yourwellbeingguide.site/contactkohaku/">Contact</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h5>Legal</h5>
       <ul>
-        <li><a href="https://yourwellbeingguide.site/terms/">Terms of Service</a></li>
-        <li><a href="https://yourwellbeingguide.site/policy/">Privacy Policy</a></li>
-        <li><a href="https://yourwellbeingguide.site/contact/">Contact Us</a></li>
+        <li><a href="https://yourwellbeingguide.site/termskohaku/">Terms of Service</a></li>
+        <li><a href="https://yourwellbeingguide.site/policykohaku/">Privacy Policy</a></li>
+        <li><a href="https://yourwellbeingguide.site/contactkohaku/">Contact Us</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-company">
     <p>Kōhaku Studio · Rua Doutor Celestino, 122, Sala 708, Centro · Niterói, RJ, 24020-091 · Brasil</p>
-    <p>Support: <a href="mailto:support@mydivinesoul.com">support@mydivinesoul.com</a></p>
+    <p>Support: <a href="mailto:support@yourwellbeingguide.site">support@yourwellbeingguide.site</a></p>
   </div>
   <div class="footer-bottom">
     <span>© 2026 Kōhaku Studio · All rights reserved</span>
